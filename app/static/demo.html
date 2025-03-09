@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1/new.min.css">
+<title>passkey demo</title>
+</head>
+
+<body>
+<h3>passkey demo</h3>
+<br />
+<label for="username">Username:</label>
+<input type="text" id="username" name="username"
+  autocomplete="username webauthn" autofocus />
+&nbsp; <br />
+<button id="register">登録</button>
+<button id="authenticate">認証</button>
+<button id="getusers">認証情報取得</button>
+&nbsp; <br />
+&nbsp; <br />
+users in server: <pre id="users"></pre>
+<script src="client.js"></script>
+<script>
+(async () => {
+    const isAvailable = await isCMA();
+    // console.log("isAvailable=", isAvailable);
+    const iv = await isPlatformAuthenticatorAvailable();
+    // console.log("isPlatformAuthenticatorAvailable=", iv);
+})();
+</script>
+</body>
+</html>

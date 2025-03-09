@@ -1,0 +1,27 @@
+services:
+  passkey_perl:
+    build:
+      context: .
+      dockerfile: docker/perl/Dockerfile
+    container_name: passkey_perl
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+        # copy flask static files to mojo static dir
+      - ./app/static:/app/public
+    environment:
+      TZ: Asia/Tokyo
+  passkey_python:
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
+    container_name: passkey_python
+    ports:
+      - 5000:5000
+    volumes:
+      - type: bind
+        source: app
+        target: /app
+    environment:
+      TZ: Asia/Tokyo
